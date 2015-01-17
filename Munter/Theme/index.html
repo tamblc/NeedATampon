@@ -7,7 +7,7 @@
 
     <!-- Tabletop.js for accessing Google Spreadsheets and Mapsheet.js for mapping, of course -->
     <script type="text/javascript" src="js/tabletop.js"></script>
-    <script type="text/javascript" src="js/mapsheet.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -75,40 +75,23 @@
 	
 	<!-- === MAIN Background === -->
 	<div class="slide story" id="slide-1" data-slide="1">
-		<div class="container" id="map">
+	<script src='https://rawgit.com/mapbox/leaflet-omnivore/master/leaflet-omnivore.min.js'></script>
+	<div id='map' class="col-md-8"></div>
 
-		</div><!-- /container -->
-	<style>
-      #map {
-        width: 600px;
-        height: 500px;
-      }
-    </style>
-        <!-- This is the popup you'll get when you click a marker. 
-         {{these}} are columns in your spreadsheet -->
-    <script id="popup-template" type="text/x-handlebars-template">
-      <img src="{{image}}">
-      <h3>{{address}}</h3>
-      <p>There are {{available}}</p>
-      <p>{{notes}}</p>
-    </script>
-    <script type="text/javascript">
-      $(document).ready( function() {       
-        // Make sure the spreadsheet is published!
-        var published_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1xugRhJDxVGmJPU8EQtrCDzIky5bRTU-vg7dcfdJn_tM/edit?usp=sharing'; 
+	<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoidGFtYmxjIiwiYSI6IjZYMlpVME0ifQ.SkFvnDEfXGkR2gLzVC6GXg';
+var map = L.mapbox.map('map', 'tamblc.kpa72c76');
 
-        // Let's get the popup template and compile it using Handlebars
-        var source   = $("#popup-template").html();
-        var template = Handlebars.compile(source);
+// Omnivore will AJAX-request this file behind the scenes and parse it:
+// note that there are considerations:
+// - The CSV file must contain latitude and longitude values, in column
+//   named roughly latitude and longitude
+// - The file must either be on the same domain as the page that requests it,
+//   or both the server it is requested from and the user's browser must
+//   support CORS.
+omnivore.csv('﻿http://docs.google.com/spreadsheets/d/1xugRhJDxVGmJPU8EQtrCDzIky5bRTU-vg7dcfdJn_tM/export?gid=0&format=csv').addTo(map);
+</script>
 
-        // OK, now let's make the map
-        var map = Mapsheet({
-          key: published_spreadsheet_url,
-          element: "map",
-          popupTemplate: template
-        });
-      });
-    </script>
 	</div><!-- /slide1 -->
 	
 	<!-- === Slide 2 === -->
