@@ -39,6 +39,7 @@ html, body {
 }
 
 body {
+	list-style-type: none;
 	background-color: #ddedf4;
 	font-family: "Titillium Web", sans-serif;
 	font-weight: normal;
@@ -51,6 +52,7 @@ body {
 }
 
 .navbar {
+	list-style-type: none;
 	background-color: #1b3650;
 	background-color: rgba( 228, 230, 229, .85 );
 	border-bottom: 0 none;
@@ -62,13 +64,16 @@ body {
 	background-color: rgba( 0, 0, 0, .5 );
 	border-bottom: 1px solid #bfbfbf;
 }
+li {
+	list-style-type: none;
+}
 
 .navbar .nav a {
+	list-style-type: none;
 	color: #000000;
 	font-color:black;
 	font-family: "Titillium Web", sans-serif;
 	font-weight: 600;
-	transition: all .5 linear;
 }
 
 .navbar.inv a {
@@ -103,14 +108,13 @@ body {
 	left: 0;
 	position: absolute;
 	top: 0;
-	transition: all .5 linear;
 	width: 1%;
 	z-index: 9;
 }
 
-.inv .active-menu {
+/*.inv .active-menu {
 	background-color: #e4e6e5;
-}
+}*/
 
 .special-active-menu {
 	z-index: 10;
